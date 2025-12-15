@@ -1,0 +1,26 @@
+package stealth
+
+import (
+	"math/rand"
+	"time"
+
+	"github.com/go-rod/rod"
+)
+
+// MoveMouseHuman simulates subtle human scrolling behavior
+func MoveMouseHuman(page *rod.Page) {
+	actions := rand.Intn(3) + 3 // 3–5 small scroll actions
+
+	for i := 0; i < actions; i++ {
+		time.Sleep(time.Duration(rand.Intn(600)+400) * time.Millisecond)
+
+		// Scroll between 10 and 40 pixels (up or down)
+		scrollY := float64(rand.Intn(40) + 10)
+		if rand.Intn(2) == 0 {
+			scrollY = -scrollY
+		}
+
+		// Correct Rod API
+		page.Mouse.Scroll(0, scrollY, 1)
+	}
+}
