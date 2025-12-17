@@ -32,10 +32,9 @@ The automation \*\*detected this checkpoint and halted execution immediately\*\*
 
 \- Stops automation safely and keeps the browser open for inspection
 
+This approach ensured compliance, safety, and correct demonstration of automation best practices.
 
 
-This approach ensures compliance, safety, and correct demonstration of automation best practices.
----
 
 This design demonstrates automation architecture, safety controls, and ethical handling
 
@@ -78,6 +77,4 @@ This project includes \*\*design-only proof-of-concept modules\*\* for connectio
 
 
 \#### Example Message Template
-
-
 

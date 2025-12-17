@@ -7,7 +7,6 @@ import (
 	"github.com/go-rod/rod"
 )
 
-// SearchProfiles performs a public LinkedIn people search (POC)
 func SearchProfiles(page *rod.Page, keyword string, pages int) ([]string, error) {
 	profiles := make(map[string]bool)
 
@@ -30,7 +29,6 @@ func SearchProfiles(page *rod.Page, keyword string, pages int) ([]string, error)
 		}
 	}
 
-	// Convert map to slice
 	result := []string{}
 	for url := range profiles {
 		result = append(result, url)

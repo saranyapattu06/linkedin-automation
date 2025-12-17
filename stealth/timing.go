@@ -9,7 +9,6 @@ func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
-// Think simulates human thinking delay
 func Think() {
 	time.Sleep(randomDuration(800, 2000))
 }
