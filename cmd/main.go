@@ -1,30 +1,33 @@
 package main
 
 import (
+	"fmt"
+	"log"
+
 	"linkedin-automation/browser"
-	"linkedin-automation/config"
+	"linkedin-automation/search"
 	"linkedin-automation/stealth"
-	"time"
 )
 
 func main() {
-	cfg := config.LoadConfig()
-
-	browserInstance, page := browser.Launch(cfg.Headless)
+	// Launch browser (headful for demo)
+	browserInstance, page := browser.Launch(false)
 	defer browserInstance.MustClose()
 
+	// Apply stealth
 	stealth.ApplyFingerprintMask(page)
 
-	page.MustNavigate("https://www.linkedin.com")
-	page.MustWaitLoad()
-
-	stealth.Think()
-
-	ticker := time.NewTicker(5 * time.Second)
-	defer ticker.Stop()
-
-	for {
-		<-ticker.C
-		stealth.MoveMouseHuman(page)
+	// Perform search (POC)
+	results, err := search.SearchProfiles(page, "software engineer", 2)
+	if err != nil {
+		log.Fatal(err)
 	}
+
+	fmt.Println("Collected profile URLs:")
+	for _, url := range results {
+		fmt.Println(url)
+	}
+
+	// Keep browser open for inspection
+	select {}
 }
